@@ -12,6 +12,7 @@ import (
 	"github.com/smartwalle/crypto4go"
 	"io"
 	"io/ioutil"
+	"log"
 	"math"
 	"net/http"
 	"net/url"
@@ -272,6 +273,8 @@ func (this *Client) doRequest(method string, param Param, result interface{}) (e
 	}
 
 	var dataStr = string(data)
+
+	log.Printf("resp data : %s", dataStr)
 
 	var rootNodeName = strings.Replace(param.APIName(), ".", "_", -1) + kResponseSuffix
 

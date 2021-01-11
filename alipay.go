@@ -251,6 +251,7 @@ func (this *Client) doRequest(method string, param Param, result interface{}) (e
 			return err
 		}
 		buf = strings.NewReader(p.Encode())
+		log.Println("req body :", p.Encode())
 	}
 
 	req, err := http.NewRequest(method, this.apiDomain, buf)
@@ -261,6 +262,7 @@ func (this *Client) doRequest(method string, param Param, result interface{}) (e
 
 	resp, err := this.Client.Do(req)
 	if resp != nil {
+		log.Println("resp status :", resp.Status)
 		defer resp.Body.Close()
 	}
 	if err != nil {
